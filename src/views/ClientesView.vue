@@ -10,7 +10,7 @@
     onMounted(()=>{
         ClienteService.obtenerClientes()
             .then(({data}) => clientes.value = data)
-            .catch(error => console.log('hubo un error'))
+            .catch(error => console.log(error))
     })
 
     defineProps({
@@ -23,18 +23,18 @@
         return clientes.value.length > 0
     })
 
-    const actualizarEstado = ({id, estado}) =>{
-        ClienteService.actualizarEstado(id, {estado: !estado})
+    const actualizarEstado = ({_id, estado}) =>{
+        ClienteService.actualizarEstado(_id, {estado: !estado})
         .then(() => {
-            const i = clientes.value.findIndex(cliente=> cliente.id === id)
+            const i = clientes.value.findIndex(cliente => cliente._id === _id)
             clientes.value[i].estado = !estado
         })
         .catch(error => console.log(error))
     }
-    const eliminarCliente = id =>{
-        ClienteService.eliminarCliente(id)
+    const eliminarCliente = _id =>{
+        ClienteService.eliminarCliente(_id)
         .then(() =>{
-            clientes.value = clientes.value.filter(cliente => cliente.id !== id)
+            clientes.value = clientes.value.filter(cliente => cliente._id !== _id)
         })
         .catch(error=> console.log(error))
     }
@@ -63,7 +63,7 @@
                         <tbody class="divide-y divide-gray-200 bg-white">
                             <Cliente
                                 v-for="cliente in clientes" 
-                                :key="cliente.id"
+                                :key="cliente._id"
                                 :cliente="cliente"
                                 @actualizar-estado="actualizarEstado"
                                 @eliminar-cliente="eliminarCliente"

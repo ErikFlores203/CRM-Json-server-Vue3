@@ -10,11 +10,11 @@
     const router = useRouter() // para redireccionar a una ruta
     const route = useRoute() //Para sacar informacion de una ruta
 
-    const{ id } = route.params
+    const{ _id } = route.params
     const formData = reactive ({})
 
     onMounted(() => {
-        ClienteService.obtenerCliente(id)
+        ClienteService.obtenerCliente(_id)
         .then(({data}) => {
             Object.assign(formData, data)
         })
@@ -28,7 +28,7 @@
     })
 
     const handleSubmit = (data) =>{
-       ClienteService.actualizarCliente(id,data)
+       ClienteService.actualizarCliente(_id,data)
        .then(()=>router.push({name:'inicio'}))
        .catch(error=> console.log(error))
     }
@@ -47,7 +47,7 @@
             <div class="mx-auto md:w-2/3 py-20 px-6">
                 <FormKit
                     type="form"
-                    submit-label="Agregar Cliente"
+                    submit-label="Editar Cliente"
                     incomplete-message="No se pudo enviar la informacion, revisa los datos"
                     @submit="handleSubmit"
                     :value="formData"

@@ -23,7 +23,6 @@
         ClienteService.agregarCliente(data)
             .then(respuesta => {
                 // Redireccion
-                console.log(respuesta);
                 router.push({name: 'inicio'})
                 
             })

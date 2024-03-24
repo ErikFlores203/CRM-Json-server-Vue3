@@ -7,17 +7,17 @@ export default {
     agregarCliente(data){
         return api.post('/clientes', data)
     },
-    obtenerCliente(id){
-        return api.get('/clientes/' + id)
+    obtenerCliente(_id){
+        return api.get('/clientes/' + _id)
     },
-    actualizarCliente(id, data){
-        return api.patch('/clientes/'+ id, data)
+    actualizarCliente(_id, data){
+        return api.patch('/clientes/'+ _id, data)
     },
-    actualizarEstado(id, data){
-        return api.patch('/clientes/'+ id, data)
+    actualizarEstado(_id, data){
+        return api.patch('/clientes/'+ _id, data)
     },
-    eliminarCliente(id){
-        return api.delete('/clientes/' + id)
+    eliminarCliente(_id){
+        return api.delete('/clientes/' + _id)
     }
 
 }

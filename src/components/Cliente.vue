@@ -32,17 +32,17 @@
            <button
                 class="inline-flex rounded-full px-2 text-xs font-semibold leading-5"
                 :class="[estado ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800']"
-                @click="$emit('actualizar-estado', {id: cliente.id, estado: cliente.estado})"
+                @click="$emit('actualizar-estado', {_id: cliente._id, estado: cliente.estado})"
            >{{ estado ? 'Activo' : 'inactivo'}}</button>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 ">
             <RouterLink 
-                :to="{name:'editar-cliente', params:{id: cliente.id}}"
+                :to="{name:'editar-cliente', params:{_id: cliente._id}}"
                 class="text-indigo-600 hover:text-indigo-900 mr-5 "
             >Editar</RouterLink>
             <button
                 class="text-red-600 hover:text-red-900"
-                @click="$emit('eliminar-cliente' , cliente.id)"
+                @click="$emit('eliminar-cliente' , cliente._id)"
             >
                 Eliminar
             </button>
